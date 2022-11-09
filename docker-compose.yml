@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+      db:
+          build: .
+          container_name: db
+          networks:
+              - djangonetwork
+      web:
+          build: .
+          depends_on:
+             - db
+          links:
+             - db:db
+          networks:
+             - djangonetwork
+
+networks:
+      djangonetwork:
+          driver: bridge
